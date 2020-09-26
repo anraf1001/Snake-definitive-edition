@@ -8,7 +8,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(FLAGS -Wall -Werror -Wextra -pedantic)
 
 set(SRC
-    drawable.cpp
     food.cpp
     snake.cpp)
 
