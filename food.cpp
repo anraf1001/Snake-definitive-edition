@@ -6,8 +6,9 @@
 
 Food::Food(float x, float y)
     : body_(sf::Vector2f(tileSize, tileSize)) {
+    foodTexture_.loadFromFile("../asset/apple.png");
     body_.setPosition(x, y);
-    body_.setFillColor(sf::Color::Red);
+    body_.setTexture(&foodTexture_);
 }
 
 void Food::generateNewPos() {

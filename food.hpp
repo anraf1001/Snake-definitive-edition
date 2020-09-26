@@ -11,5 +11,6 @@ public:
     sf::RectangleShape& getBody() { return body_; }
 
 private:
+    sf::Texture foodTexture_;
     sf::RectangleShape body_;
 };

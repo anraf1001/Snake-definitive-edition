@@ -14,9 +14,8 @@ Snake::Snake(float x, float y) {
     tailTextures_[Direction::RIGHT].loadFromFile("../asset/tailRIGHT.png");
     tailTextures_[Direction::LEFT].loadFromFile("../asset/tailLEFT.png");
 
-    if (bodyTexture_.loadFromFile("../asset/body.png")) {
-        body_.front().setTexture(&faceTextures_[body_.front().getDir()]);
-    }
+    bodyTexture_.loadFromFile("../asset/body.png");
+    body_.front().setTexture(&faceTextures_[body_.front().getDir()]);
 
     body_.front().setPosition(x, y);
 }
