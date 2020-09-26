@@ -37,6 +37,8 @@ int main() {
             } else if (snake.getBody().front().getGlobalBounds().intersects(food.getBody().getGlobalBounds())) {
                 food.generateNewPos();
                 snake.addNewSegment();
+            } else if (snake.checkSuicide()) {
+                window.close();
             }
 
         } else {

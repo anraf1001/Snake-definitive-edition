@@ -63,3 +63,13 @@ void Snake::addNewSegment() {
         break;
     }
 }
+
+bool Snake::checkSuicide() {
+    for (auto it = body_.begin() + 1; it != body_.end(); it++) {
+        if (it->getGlobalBounds().intersects(body_.front().getGlobalBounds())) {
+            return true;
+        }
+    }
+
+    return false;
+}

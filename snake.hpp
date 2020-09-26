@@ -14,6 +14,7 @@ public:
     void updateDirection(Direction newDir);
     bool checkBorderCollision(const sf::RenderWindow& window) const;
     void addNewSegment();
+    bool checkSuicide();
 
     std::vector<Piece>& getBody() { return body_; }
 
