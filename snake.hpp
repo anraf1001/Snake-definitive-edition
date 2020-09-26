@@ -20,8 +20,14 @@ public:
     std::vector<Piece>& getBody() { return body_; }
 
 private:
-    sf::Texture faceTexture_;
     sf::Texture bodyTexture_;
-    std::map<Direction, sf::Texture> tailTextures;
+    std::map<Direction, sf::Texture> faceTextures_{{Direction::UP, sf::Texture()},
+                                                   {Direction::DOWN, sf::Texture()},
+                                                   {Direction::LEFT, sf::Texture()},
+                                                   {Direction::RIGHT, sf::Texture()}};
+    std::map<Direction, sf::Texture> tailTextures_{{Direction::UP, sf::Texture()},
+                                                   {Direction::DOWN, sf::Texture()},
+                                                   {Direction::LEFT, sf::Texture()},
+                                                   {Direction::RIGHT, sf::Texture()}};
     std::vector<Piece> body_;
 };
