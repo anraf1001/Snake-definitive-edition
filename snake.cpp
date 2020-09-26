@@ -1,38 +1,39 @@
 #include "snake.hpp"
 
-Snake::Snake(float x, float y)
-    : body_(sf::Vector2f(tileSize, tileSize)), dir_(Direction::LEFT) {
-    body_.setPosition(x, y);
-    body_.setFillColor(sf::Color::Green);
+Snake::Snake(float x, float y) {
+    body_.emplace_back(tileSize, tileSize, Direction::LEFT);
+    body_.front().setPosition(x, y);
+    body_.front().setFillColor(sf::Color::Green);
 }
 
 void Snake::move() {
-    switch (dir_) {
+    switch (body_.front().getDir()) {
     case Direction::UP:
-        body_.move(0, -tileSize);
+        body_.front().move(0, -tileSize);
         break;
     case Direction::DOWN:
-        body_.move(0, tileSize);
+        body_.front().move(0, tileSize);
         break;
     case Direction::RIGHT:
-        body_.move(tileSize, 0);
+        body_.front().move(tileSize, 0);
         break;
     case Direction::LEFT:
-        body_.move(-tileSize, 0);
+        body_.front().move(-tileSize, 0);
         break;
     }
 }
 
 void Snake::updateDirection(Direction newDir) {
-    if ((newDir == Direction::LEFT || newDir == Direction::RIGHT) && (dir_ == Direction::UP || dir_ == Direction::DOWN)) {
-        dir_ = newDir;
-    } else if ((newDir == Direction::UP || newDir == Direction::DOWN) && (dir_ == Direction::LEFT || dir_ == Direction::RIGHT)) {
-        dir_ = newDir;
+    auto actualDir = body_.front().getDir();
+    if ((newDir == Direction::LEFT || newDir == Direction::RIGHT) && (actualDir == Direction::UP || actualDir == Direction::DOWN)) {
+        body_.front().setDir(newDir);
+    } else if ((newDir == Direction::UP || newDir == Direction::DOWN) && (actualDir == Direction::LEFT || actualDir == Direction::RIGHT)) {
+        body_.front().setDir(newDir);
     }
 }
 
 bool Snake::checkBorderCollision(const sf::RenderWindow& window) const {
-    auto actualPos = body_.getPosition();
+    auto actualPos = body_.front().getPosition();
     return actualPos.x <= 0.0f ||
            actualPos.x >= window.getSize().x ||
            actualPos.y <= 0.0f ||

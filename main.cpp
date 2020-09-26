@@ -34,7 +34,7 @@ int main() {
             snake.move();
             if (snake.checkBorderCollision(window)) {
                 window.close();
-            } else if (snake.getBody().getGlobalBounds().intersects(food.getBody().getGlobalBounds())) {
+            } else if (snake.getBody().front().getGlobalBounds().intersects(food.getBody().getGlobalBounds())) {
                 food.generateNewPos();
             }
 
@@ -43,7 +43,9 @@ int main() {
         }
 
         window.clear();
-        window.draw(snake.getBody());
+        for (const auto& segment : snake.getBody()) {
+            window.draw(segment);
+        }
         window.draw(food.getBody());
         window.display();
     }

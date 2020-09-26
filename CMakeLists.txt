@@ -9,6 +9,7 @@ set(FLAGS -Wall -Werror -Wextra -pedantic)
 
 set(SRC
     food.cpp
+    Piece.cpp
     snake.cpp)
 
 add_library(${PROJECT_NAME}-lib ${SRC})
