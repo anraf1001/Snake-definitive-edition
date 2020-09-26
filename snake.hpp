@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <map>
 #include <vector>
 
 #include "Piece.hpp"
@@ -19,5 +20,8 @@ public:
     std::vector<Piece>& getBody() { return body_; }
 
 private:
+    sf::Texture faceTexture_;
+    sf::Texture bodyTexture_;
+    std::map<Direction, sf::Texture> tailTextures;
     std::vector<Piece> body_;
 };

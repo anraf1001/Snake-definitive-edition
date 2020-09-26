@@ -5,7 +5,7 @@ enable_testing()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(FLAGS -Wall -Werror -Wextra -pedantic)
+set(FLAGS -Wall -Werror -Wextra -pedantic -g)
 
 set(SRC
     food.cpp

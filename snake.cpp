@@ -1,14 +1,30 @@
 #include "snake.hpp"
+#include <iostream>
 
 Snake::Snake(float x, float y) {
     body_.emplace_back(tileSize, tileSize, Direction::LEFT);
+
+    faceTexture_.loadFromFile("../asset/face.png");
+    tailTextures.emplace(Direction::UP, sf::Texture());
+    tailTextures.emplace(Direction::DOWN, sf::Texture());
+    tailTextures.emplace(Direction::LEFT, sf::Texture());
+    tailTextures.emplace(Direction::RIGHT, sf::Texture());
+    tailTextures[Direction::UP].loadFromFile("../asset/tailUP.png");
+    tailTextures[Direction::DOWN].loadFromFile("../asset/tailDOWN.png");
+    tailTextures[Direction::RIGHT].loadFromFile("../asset/tailRIGHT.png");
+    tailTextures[Direction::LEFT].loadFromFile("../asset/tailLEFT.png");
+
+    if (bodyTexture_.loadFromFile("../asset/body.png")) {
+        body_.front().setTexture(&bodyTexture_);
+    }
+
     body_.front().setPosition(x, y);
-    body_.front().setFillColor(sf::Color::Green);
 }
 
 void Snake::move() {
     for (size_t i = body_.size() - 1; i > 0; i--) {
         body_[i].setPosition(body_[i - 1].getPosition());
+        body_[i].setDir(body_[i - 1].getDir());
     }
 
     switch (body_.front().getDir()) {
@@ -25,6 +41,8 @@ void Snake::move() {
         body_.front().move(-tileSize, 0);
         break;
     }
+
+    body_.back().setTexture(&tailTextures[body_.back().getDir()]);
 }
 
 void Snake::updateDirection(Direction newDir) {
@@ -46,6 +64,7 @@ bool Snake::checkBorderCollision(const sf::RenderWindow& window) const {
 
 void Snake::addNewSegment() {
     auto backPos = body_.back().getPosition();
+    body_.back().setTexture(&bodyTexture_);
     body_.emplace_back(tileSize, tileSize, body_.back().getDir());
 
     switch (body_.back().getDir()) {
@@ -62,6 +81,7 @@ void Snake::addNewSegment() {
         body_.back().setPosition(backPos.x + tileSize, backPos.y);
         break;
     }
+    body_.back().setTexture(&tailTextures[body_.back().getDir()]);
 }
 
 bool Snake::checkSuicide() {

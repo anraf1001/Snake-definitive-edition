@@ -32,13 +32,11 @@ int main() {
         if (deltaTime > 0.2) {
             deltaTime = 0.0f;
             snake.move();
-            if (snake.checkBorderCollision(window)) {
+            if (snake.checkBorderCollision(window) || snake.checkSuicide()) {
                 window.close();
             } else if (snake.getBody().front().getGlobalBounds().intersects(food.getBody().getGlobalBounds())) {
                 food.generateNewPos();
                 snake.addNewSegment();
-            } else if (snake.checkSuicide()) {
-                window.close();
             }
 
         } else {
