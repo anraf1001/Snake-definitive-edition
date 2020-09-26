@@ -1,8 +1,7 @@
 #include "snake.hpp"
 
 Snake::Snake(float x, float y)
-    : body_(sf::Vector2f(tileSize, tileSize)), dir_(Direction::LEFT) {
-    body_.setPosition(x, y);
+    : Drawable(x, y), dir_(Direction::LEFT) {
     body_.setFillColor(sf::Color::Green);
 }
 
