@@ -4,6 +4,9 @@
 
 #include "drawable.hpp"
 
-class Fruit : public Drawable {
+class Food : public Drawable {
 public:
+    Food(float x, float y);
+
+    void generateNewPos();
 };

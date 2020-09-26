@@ -1,12 +1,14 @@
 #include <SFML/Graphics.hpp>
 
 #include "config.hpp"
+#include "food.hpp"
 #include "snake.hpp"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(screenWidth * tileSize, screenHeight * tileSize), "Snake");
 
     Snake snake(window.getSize().x / 2.0f, window.getSize().y / 2.0f);
+    Food food(window.getSize().x / 2.0f + 60, window.getSize().y / 2.0f + 60);
     sf::Clock clock;
     float deltaTime{};
     while (window.isOpen()) {
@@ -32,6 +34,8 @@ int main() {
             snake.move();
             if (snake.checkBorderCollision(window)) {
                 window.close();
+            } else if (snake.getBody().getGlobalBounds().intersects(food.getBody().getGlobalBounds())) {
+                food.generateNewPos();
             }
 
         } else {
@@ -40,6 +44,7 @@ int main() {
 
         window.clear();
         window.draw(snake.getBody());
+        window.draw(food.getBody());
         window.display();
     }
     return 0;
