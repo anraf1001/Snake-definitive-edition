@@ -14,7 +14,7 @@ Food::Food(float x, float y)
 void Food::generateNewPos() {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distrib(0, screenWidth * tileSize - body_.getSize().x);
+    std::uniform_int_distribution<> distrib(fruitBorder, screenWidth * tileSize - body_.getSize().x - fruitBorder);
 
     body_.setPosition(distrib(gen), distrib(gen));
 }
