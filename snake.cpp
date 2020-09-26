@@ -7,6 +7,10 @@ Snake::Snake(float x, float y) {
 }
 
 void Snake::move() {
+    for (size_t i = body_.size() - 1; i > 0; i--) {
+        body_[i].setPosition(body_[i - 1].getPosition());
+    }
+
     switch (body_.front().getDir()) {
     case Direction::UP:
         body_.front().move(0, -tileSize);
@@ -38,4 +42,24 @@ bool Snake::checkBorderCollision(const sf::RenderWindow& window) const {
            actualPos.x >= window.getSize().x ||
            actualPos.y <= 0.0f ||
            actualPos.y >= window.getSize().y;
+}
+
+void Snake::addNewSegment() {
+    auto backPos = body_.back().getPosition();
+    body_.emplace_back(tileSize, tileSize, body_.back().getDir());
+
+    switch (body_.back().getDir()) {
+    case Direction::UP:
+        body_.back().setPosition(backPos.x, backPos.y - tileSize);
+        break;
+    case Direction::DOWN:
+        body_.back().setPosition(backPos.x, backPos.y + tileSize);
+        break;
+    case Direction::RIGHT:
+        body_.back().setPosition(backPos.x - tileSize, backPos.y);
+        break;
+    case Direction::LEFT:
+        body_.back().setPosition(backPos.x + tileSize, backPos.y);
+        break;
+    }
 }
