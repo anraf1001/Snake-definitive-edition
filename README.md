@@ -8,9 +8,11 @@
 * anraf1001
 
 ## Screenshots
+![](screenshots/screenshot.png)
 
 ## Description
 
 ## Libraries used in project
+Game uses SFML library for displaying objects and event handling
 
 ## Coming soon...
