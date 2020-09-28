@@ -17,7 +17,7 @@
 
 ## Description
 
-Snake is the game where player manaveuers a line which grows in length and this line is itself a primary obstacle, concept orginated in 1976 based on arcade game Blockade.
+Snake is the game where player maneuvers a line which grows in length and this line is itself a primary obstacle, concept originated in 1976 based on arcade game Blockade.
 
 Game get most popularity from old Nokia phones where it was one of main attraction :)
 
@@ -25,7 +25,9 @@ Game get most popularity from old Nokia phones where it was one of main attracti
 
 Game uses SFML library for displaying objects and event handling.
 
-Command to install library : ```sudo apt-get install libsfml-dev```
+Command to install library (Ubuntu-based) : ```sudo apt-get install libsfml-dev```
+
+Command to install library (Arch-based) : ```sudo pacman -S sfml```
 
 ## How to run
 
