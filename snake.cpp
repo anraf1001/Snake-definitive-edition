@@ -1,20 +1,32 @@
 #include "snake.hpp"
 #include <iostream>
 
+constexpr const char* kfaceUPTexPath = "../asset/faceUP.png";
+constexpr const char* kfaceDOWNTexPath = "../asset/faceDOWN.png";
+constexpr const char* kfaceRIGHTTexPath = "../asset/faceRIGHT.png";
+constexpr const char* kfaceLEFTTexPath = "../asset/faceLEFT.png";
+
+constexpr const char* ktailUPTextPath = "../asset/tailUP.png";
+constexpr const char* ktailDOWNTextPath = "../asset/tailDOWN.png";
+constexpr const char* ktailRIGHTTextPath = "../asset/tailRIGHT.png";
+constexpr const char* ktailLEFTTextPath = "../asset/tailLEFT.png";
+
+constexpr const char* kBodyTexPath = "../asset/body.png";
+
 Snake::Snake(float x, float y) {
     body_.emplace_back(tileSize, tileSize, Direction::LEFT);
 
-    faceTextures_[Direction::UP].loadFromFile("../asset/faceUP.png");
-    faceTextures_[Direction::DOWN].loadFromFile("../asset/faceDOWN.png");
-    faceTextures_[Direction::RIGHT].loadFromFile("../asset/faceRIGHT.png");
-    faceTextures_[Direction::LEFT].loadFromFile("../asset/faceLEFT.png");
+    faceTextures_[Direction::UP].loadFromFile(kfaceUPTexPath);
+    faceTextures_[Direction::DOWN].loadFromFile(kfaceDOWNTexPath);
+    faceTextures_[Direction::RIGHT].loadFromFile(kfaceRIGHTTexPath);
+    faceTextures_[Direction::LEFT].loadFromFile(kfaceLEFTTexPath);
 
-    tailTextures_[Direction::UP].loadFromFile("../asset/tailUP.png");
-    tailTextures_[Direction::DOWN].loadFromFile("../asset/tailDOWN.png");
-    tailTextures_[Direction::RIGHT].loadFromFile("../asset/tailRIGHT.png");
-    tailTextures_[Direction::LEFT].loadFromFile("../asset/tailLEFT.png");
+    tailTextures_[Direction::UP].loadFromFile(ktailUPTextPath);
+    tailTextures_[Direction::DOWN].loadFromFile(ktailDOWNTextPath);
+    tailTextures_[Direction::RIGHT].loadFromFile(ktailRIGHTTextPath);
+    tailTextures_[Direction::LEFT].loadFromFile(ktailLEFTTextPath);
 
-    bodyTexture_.loadFromFile("../asset/body.png");
+    bodyTexture_.loadFromFile(kBodyTexPath);
     body_.front().setTexture(&faceTextures_[body_.front().getDir()]);
 
     body_.front().setPosition(x, y);
